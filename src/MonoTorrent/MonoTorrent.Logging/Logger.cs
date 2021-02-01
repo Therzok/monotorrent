@@ -32,6 +32,7 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 using MonoTorrent.Client.Connections;
+using MonoTorrent.Client.PiecePicking;
 
 namespace MonoTorrent.Logging
 {
@@ -135,6 +136,12 @@ namespace MonoTorrent.Logging
         {
             if (Writer != null)
                 Writer.Error (string.Format ("{0}{1}{2}", string.Format (formatString, p1), Environment.NewLine, ex));
+        }
+
+        internal void InfoTimeFormatted (string format, string v1, PieceRequest v2, IPeer v3)
+        {
+            if (Writer != null)
+                Writer.Info ($"{DateTime.Now.ToLongTimeString ()}: {string.Format (format, v1, v2, v3)}");
         }
     }
 }
